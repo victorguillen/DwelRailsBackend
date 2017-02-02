@@ -12,13 +12,9 @@ class Api::GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new()
-    if current_user.landlord
-      @group.landlord_id = current_user.id
-    else
-      @group.tenant_id = current_user.id
-    end
-      @group.token = SecureRandom.base64
+    @group = Group.new(group_params)
+    @group.user1_id = groups_params[:user_id]
+    @group.token = SecureRandom.base64
     if @group.save
       render :show
     else
@@ -28,16 +24,13 @@ class Api::GroupsController < ApplicationController
 
   def update
     @group = Group.find_by_token(params[:token])
-    if current_user.landlord
-      @group.update(landlord_id: current_user.id)
-    else
-      @group.update(tenant_id: current_user.id)
-    end
+    @group.user2_id = groups_params[:user_id]
+    @group.save
     render :show
   end
 
   def group_params
-    params.require(:group).permit(:id, :token)
+    params.require(:group).permit(:token, :address, :user_id)
   end
 
 end
