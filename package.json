@@ -19,6 +19,10 @@
   "bugs": {
     "url": "https://github.com/victorguillen/DwelRailsBackend/issues"
   },
+  "engines": {
+  "node": "4.4.3",
+  "npm": "4.0.5"
+},
   "homepage": "https://github.com/victorguillen/DwelRailsBackend#readme",
   "dependencies": {
     "babel-core": "^6.22.1",
