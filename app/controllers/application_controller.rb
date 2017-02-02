@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+<<<<<<< HEAD
   class ApplicationController < ActionController::Base
 
   # protect_from_forgery with: :exception
@@ -32,4 +33,8 @@ class ApplicationController < ActionController::Base
   end
 
 end
+=======
+  protect_from_forgery with: :exception
+
+>>>>>>> b34694a512bba119272606bdf11c75c29d6b7858
 end
