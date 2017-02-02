@@ -1,5 +1,18 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id          :integer          not null, primary key
+#  token       :string           not null
+#  tenant_id   :integer
+#  landlord_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  address     :text             not null
+#
+
 class Group < ApplicationRecord
-  validates :token, presence: true
+  validates :token, :address, presence: true
 
   belongs_to :tenant,
   inverse_of: :groups,
