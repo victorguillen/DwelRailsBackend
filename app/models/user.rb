@@ -24,6 +24,16 @@ class User < ApplicationRecord
 
 	has_many :posts
 
+  has_many :groups,
+  foreign_key: :user1_id,
+  foreign_key: :user2_id,
+  class_name: :groups
+
+  # has_many :groups,
+  # foreign_key: :user2_id,
+  # class_name: :groups
+
+
 	def password= password
 		self.password_digest = BCrypt::Password.create(password)
 		@password = password

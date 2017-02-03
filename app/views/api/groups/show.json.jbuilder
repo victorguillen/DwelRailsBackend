@@ -1,1 +1,1 @@
-json.extract! @group, :id, :tenant, :landlord, :token
+json.extract! @group, :id, :user1_id, :token
