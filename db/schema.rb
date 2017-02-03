@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203002406) do
+ActiveRecord::Schema.define(version: 20170201231614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,22 +24,20 @@ ActiveRecord::Schema.define(version: 20170203002406) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.string   "token",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "address",    null: false
-    t.integer  "user1_id"
-    t.integer  "user2_id"
+    t.string   "token",       null: false
+    t.integer  "tenant_id"
+    t.integer  "landlord_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "todos", force: :cascade do |t|
-    t.integer  "group_id",    null: false
-    t.text     "body",        null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "description", null: false
-    t.boolean  "resolved"
-    t.string   "category",    null: false
+    t.integer  "group_id",   null: false
+    t.text     "body",       null: false
+    t.boolean  "resolved",   null: false
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

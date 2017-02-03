@@ -13,6 +13,7 @@ class Api::GroupsController < ApplicationController
     @group.user1_id = params[:user_id]
     @group.user2_id = nil
     @group.token = SecureRandom.base64
+    debugger
     if @group.save
       render :show
     else
