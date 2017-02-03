@@ -13,16 +13,16 @@
 
 class Group < ApplicationRecord
   validates :token, :address, presence: true
+  validates :user1_id, length: {minimum: 0}, allow_nil: true
+  validates :user2_id, length: {minimum: 0}, allow_nil: true
 
-  belongs_to :tenant,
-  inverse_of: :groups,
-  foreign_key: :tenant_id,
+  belongs_to :user1,
+  foreign_key: :user1_id,
   class_name: :User
 
-  belongs_to :landlord,
-  inverse_of: :groups,
-  foreign_key: :landlord_id,
-  class_name: :User
+  # belongs_to :user2,
+  # foreign_key: :user2_id,
+  # class_name: :User
 
   has_many :todos
 end

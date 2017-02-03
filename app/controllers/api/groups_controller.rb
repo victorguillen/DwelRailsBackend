@@ -1,11 +1,8 @@
 class Api::GroupsController < ApplicationController
-  def index
-    if current_user.landlord_id
-      @groups = Group.where(landlord_id: current_user.id)
-    else
-      @groups = Group.where(tenant_id: current_user.id)
-    end
-  end
+  # def index
+  #   @groups = Group.where(user1_id = params[user_id]).or(
+  #   user2_id = params[:user_id])
+  # end
 
   def show
     @group = Group.find[params[:id]]
@@ -13,7 +10,8 @@ class Api::GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.user1_id = groups_params[:user_id]
+    @group.user1_id = params[:user_id]
+    @group.user2_id = nil
     @group.token = SecureRandom.base64
     if @group.save
       render :show
@@ -24,13 +22,13 @@ class Api::GroupsController < ApplicationController
 
   def update
     @group = Group.find_by_token(params[:token])
-    @group.user2_id = groups_params[:user_id]
+    @group.user2_id = params[:user_id]
     @group.save
     render :show
   end
 
   def group_params
-    params.require(:group).permit(:token, :address, :user_id)
+    params.require(:group).permit(:token, :address)
   end
 
 end
